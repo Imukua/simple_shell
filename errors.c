@@ -1,5 +1,6 @@
 #include "headers.h"
-/*void handle_input_error - handles input errors
+/*
+ * handle_input_error - handles input errors
  * @line_value: value returned by getline
  * Return: void
 */
@@ -10,7 +11,8 @@ void handle_input_error(int line_value)
 	if (feof(stdin))
 	{
 	exit(EXIT_SUCCESS);
-	} else
+	}
+	else
 	{
 	perror("readline");
 	exit(EXIT_FAILURE);
@@ -18,7 +20,8 @@ void handle_input_error(int line_value)
 	}
 }
 
-/*void check_malloc_er - checks if malloc failed
+/*
+ * check_malloc_er - checks if malloc failed
  * @ptr: pointer to the memory allocated
  * Return: void
  */
@@ -30,5 +33,3 @@ void check_malloc_er(void *ptr)
 	exit(EXIT_FAILURE);
 	}
 }
-
-

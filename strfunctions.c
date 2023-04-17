@@ -8,7 +8,7 @@
  */
 int _putchar(char c)
 {
-    return (write(1, &c, 1));
+	return (write(1, &c, 1));
 }
 
 /**
@@ -20,14 +20,15 @@ int _putchar(char c)
  */
 char _strcopy(char *to_str, char *from_str)
 {
-    int i = 0;
-    while (from_str[i] != '\0')
-    {
-        to_str[i] = from_str[i];
-        i++;
-    }
-    to_str[i] = '\0';
-    return (*to_str);
+	int i = 0;
+
+	while (from_str[i] != '\0')
+	{
+	to_str[i] = from_str[i];
+	i++;
+	}
+	to_str[i] = '\0';
+	return (*to_str);
 }
 
 /**
@@ -40,9 +41,9 @@ char _strcopy(char *to_str, char *from_str)
 /*
 size_t _strnlen(const char *strn, size_t maxlen)
 {
-    size_t length;
+	size_t length;
 
-    for (length = 0; length < maxlen; length++);
-    return (length);
+	for (length = 0; length < maxlen; length++);
+	return (length);
 }
 */
