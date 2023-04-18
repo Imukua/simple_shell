@@ -22,20 +22,32 @@ void print_prompt(char *prompt)
 */
 void execmd(char **argv)
 {
+	if (access(argv[0], X_OK) == -1)
+	{
+		printf("%s: command not found\n", argv[0]);
+		return;
+	}
 	char *execution = NULL;
 
-	if (argv)
-	{
-	execution = argv[0];
+	pid_t pid = fork();
 
-	/* execute the command with execve */
-	if (execve(execution, argv, NULL) == -1)
-	{
-	perror("Error:");
-	}
-	}
-}
+		if (pid == -1)
+		{
+			perror("fork");
+			exit(EXIT_FAILURE);
+		} else if (pid == 0)
+		{
+			execution = argv[0];
+			execve(execution, argv, NULL);
+			perror("execve");
+			exit(EXIT_FAILURE);
+		} else
+		{
+			int status;
 
+			waitpid(pid, &status, 0);
+		}
+	}
 /**
  * tokenize_input - tokenizes the input string
  * @input_str: input string

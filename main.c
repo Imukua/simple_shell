@@ -26,12 +26,18 @@ int main(void)
 	int token_count = tokenize_input(line_ptrcp, argv, delim, TMAX);
 
 	argv[token_count] = NULL;
-	execmd(argv);
-
+	
+    if (access(argv[0], X_OK) == -1)
+	{
+        printf("%s: command not found\n", argv[0]);
+        continue;
 	}
-
+	execmd(argv);
+	
 	free(line_ptrcp);
 	free(line_ptr);
+	}
+
 	return (0);
 }
 
