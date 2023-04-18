@@ -32,19 +32,20 @@ char _strcopy(char *to_str, char *from_str)
 }
 
 /**
- * _strnlen - returns the length of a string
+ * _strlen - returns the length of a string
  * @strn: string
- * @maxlen: maximum length of the string
  *
  * Return: length of the string
  */
-size_t _strnlen(const char *strn, size_t maxlen)
+size_t _strlen(const char *strn, size_t maxlen)
 {
-	size_t length;
+	size_t i = 0;
 
-	for (length = 0; length < maxlen; length++)
-	;
-	return (length);
+	while (strn[i] != '\0' && i < maxlen)
+	{
+	i++;
+	}
+	return (i);
 }
 
 /**

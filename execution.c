@@ -22,7 +22,9 @@ void print_prompt(char *prompt)
 */
 void execmd(char **argv)
 {
-	if (access(argv[0], X_OK) == -1)
+	char *argvL[2];
+	argvL[0] = locatecmd(argv[0]);
+	if (access(argvL[0], X_OK) == -1)
 	{
 		printf("%s: command not found\n", argv[0]);
 		return;
@@ -37,7 +39,7 @@ void execmd(char **argv)
 			exit(EXIT_FAILURE);
 		} else if (pid == 0)
 		{
-			execution = argv[0];
+			execution = locatecmd(argv[0]);
 			execve(execution, argv, NULL);
 			perror("execve");
 			exit(EXIT_FAILURE);

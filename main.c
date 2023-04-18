@@ -27,16 +27,13 @@ int main(void)
 
 	argv[token_count] = NULL;
 	
-    if (access(argv[0], X_OK) == -1)
-	{
-        printf("%s: command not found\n", argv[0]);
-        continue;
-	}
 	execmd(argv);
+	
+	
+	}
 	
 	free(line_ptrcp);
 	free(line_ptr);
-	}
 
 	return (0);
 }

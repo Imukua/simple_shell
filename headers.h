@@ -20,7 +20,7 @@
 int _putchar(char c);
 char _strcopy(char *to_str, char *from_str);
 int tokenize_input(char *input_str, char **tokens, const char *delim, int max_tokens) ;
-size_t _strnlen(const char *strn, size_t maxlen);
+size_t _strlen(const char *strn, size_t maxlen);
 int _strcmp(char *string2, char *string1);
 char *_strcat(char *to_str, char *from_str);
 
@@ -28,6 +28,8 @@ char *_strcat(char *to_str, char *from_str);
 //functions from execution.c - for executing commands
 void print_prompt(char *prompt);
 void execmd(char **argv);
+char *locatecmd(char *execute);
+/*char *lokeshen(char *command);*/
 
 
 //functions for error handling
