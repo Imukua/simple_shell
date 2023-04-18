@@ -32,9 +32,8 @@ void execmd(char **argv)
 	if (execve(execution, argv, NULL) == -1)
 	{
 	perror("Error:");
-	};
 	}
-
+	}
 }
 
 /**
@@ -54,8 +53,9 @@ const char *delim, int max_tokens)
 
 	while (token != NULL && token_count < max_tokens)
 	{
-		tokens[token_count++] = token;
+		tokens[token_count] = token;
 		token = strtok(NULL, delim);
+		token_count++;
 	}
 	return (token_count);
 }

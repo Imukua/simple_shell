@@ -13,7 +13,6 @@ void handle_input_error(int line_value)
 	} else
 	{
 	perror("readline");
-	exit(EXIT_FAILURE);
 	}
 	}
 }

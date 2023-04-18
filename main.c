@@ -10,7 +10,7 @@ int main(void)
 	char *prompt = "cocoon--> ";
 	char *line_ptr = NULL;
 	char *line_ptrcp = NULL;
-	const char *delim = "\n";
+	const char *delim = " \n";
 	char *argv[TMAX];
 	size_t line_size = 0;
 	ssize_t line_value;
