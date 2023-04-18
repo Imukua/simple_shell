@@ -7,11 +7,8 @@
  */
 int main(void)
 {
-	char *prompt = "cocoon--> ";
-	char *line_ptr = NULL;
-	char *line_ptrcp = NULL;
+	char *prompt = "cocoon--> ", *line_ptr = NULL, *line_ptrcp = NULL, *argv[TMAX];
 	const char *delim = " \n";
-	char *argv[TMAX];
 	size_t line_size = 0;
 	ssize_t line_value;
 
@@ -28,13 +25,10 @@ int main(void)
 	argv[token_count] = NULL;
 	
 	execmd(argv);
-	
-	
+
 	}
 	
 	free(line_ptrcp);
 	free(line_ptr);
-
 	return (0);
 }
-
