@@ -23,8 +23,6 @@ typedef struct built_in {
 }built_in;
 
 int execute_built_in(char **args);
-int num_built_ins(void);
-built_in *get_built_ins(void);
 
 /*functions for executing builtins*/
 int cd_bltn(char **args);

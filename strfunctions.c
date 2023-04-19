@@ -34,7 +34,7 @@ char _strcopy(char *to_str, char *from_str)
 /**
  * _strlen - returns the length of a string
  * @strn: string
- *
+ * @maxlen: maximum length of the string
  * Return: length of the string
  */
 size_t _strlen(const char *strn, size_t maxlen)
