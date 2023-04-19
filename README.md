@@ -1,3 +1,5 @@
-# simple_shell
-Author: Phobian99
-Author: Imukua
+AUTHORS
+
+1.  Imukua
+
+2.  Phobian99
