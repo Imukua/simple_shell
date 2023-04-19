@@ -1,5 +1,9 @@
 #include "headers.h"
-
+/**
+ * *locatecmd - locates the command in the PATH.
+ * @execute: command to be located.
+ * Return: pointer to the command.
+ */
 char *locatecmd(char *execute)
 {
     char *path = NULL;

@@ -15,9 +15,25 @@
 #include <stdio.h>
 #include <string.h>
 
+/*objects for our builtins*/
+typedef int (*built_in_func)(char **);
+typedef struct built_in {
+    char *name;
+    built_in_func func;
+}built_in;
 
-//functions from strfunctions.c - for string manipulation
+int execute_built_in(char **args);
+int num_built_ins(void);
+built_in *get_built_ins(void);
+
+/*functions for executing builtins*/
+int cd_bltn(char **args);
+int exit_bltn(char **args);
+int env_bltn(char **args);
+
+/*functions from strfunctions.c - for string manipulation*/
 int _putchar(char c);
+void _putstr(char *str);
 char _strcopy(char *to_str, char *from_str);
 int tokenize_input(char *input_str, char **tokens, const char *delim, int max_tokens) ;
 size_t _strlen(const char *strn, size_t maxlen);
@@ -25,14 +41,13 @@ int _strcmp(char *string2, char *string1);
 char *_strcat(char *to_str, char *from_str);
 
 
-//functions from execution.c - for executing commands
+/*functions from execution.c - for executing commands*/
 void print_prompt(char *prompt);
 void execmd(char **argv);
 char *locatecmd(char *execute);
-/*char *lokeshen(char *command);*/
 
 
-//functions for error handling
+/*functions for error handling*/
 void handle_input_error(int line_value);
 void check_malloc_er(void *ptr);
 #endif

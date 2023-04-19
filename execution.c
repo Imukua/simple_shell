@@ -22,8 +22,16 @@ void print_prompt(char *prompt)
 */
 void execmd(char **argv)
 {
+	int status = execute_built_in(argv);
+
+	if (status != -1 && status != 0)
+	{
+		return;
+	}
 	char *argvL[2];
+
 	argvL[0] = locatecmd(argv[0]);
+
 	if (access(argvL[0], X_OK) == -1)
 	{
 		printf("%s: command not found\n", argv[0]);

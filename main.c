@@ -23,7 +23,6 @@ int main(void)
 	int token_count = tokenize_input(line_ptrcp, argv, delim, TMAX);
 
 	argv[token_count] = NULL;
-	
 	execmd(argv);
 
 	}
