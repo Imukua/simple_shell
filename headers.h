@@ -1,4 +1,4 @@
-#ifndef HEADERS_H 
+#ifndef HEADERS_H
 #define HEADERS_H
 #define TMAX 1024
 
@@ -17,10 +17,11 @@
 
 /*objects for our builtins*/
 typedef int (*built_in_func)(char **);
-typedef struct built_in {
-    char *name;
-    built_in_func func;
-}built_in;
+typedef struct built_in
+{
+char *name;
+built_in_func func;
+} built_in;
 
 int execute_built_in(char **args);
 
@@ -33,7 +34,8 @@ int env_bltn(char **args);
 int _putchar(char c);
 void _putstr(char *str);
 char _strcopy(char *to_str, char *from_str);
-int tokenize_input(char *input_str, char **tokens, const char *delim, int max_tokens) ;
+int tokenize_input(char *input_str, char **tokens,
+const char *delim, int max_tokens);
 size_t _strlen(const char *strn, size_t maxlen);
 int _strcmp(char *string2, char *string1);
 char *_strcat(char *to_str, char *from_str);
@@ -43,6 +45,8 @@ char *_strcat(char *to_str, char *from_str);
 void print_prompt(char *prompt);
 void execmd(char **argv);
 char *locatecmd(char *execute);
+void check_argv(char **argv);
+void interactivecheck(void);
 
 
 /*functions for error handling*/

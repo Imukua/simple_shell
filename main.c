@@ -7,23 +7,29 @@
  */
 int main(void)
 {
-	char *prompt = "cocoon--> ",
-	*line_ptr = NULL, *line_ptrcp = NULL, *argv[TMAX];
+	char *line_ptr = NULL, *line_ptrcp = NULL,
+	*argv[TMAX];
 	const char *delim = " \n";
 	size_t line_size = 0;
 	ssize_t line_value;
+	int token_count;
+
 
 	while (1)
 	{
-	print_prompt(prompt);
+	interactivecheck();
 	line_value = getline(&line_ptr, &line_size, stdin);
 	handle_input_error(line_value);
 	line_ptrcp = malloc(sizeof(char) * line_size);
 	check_malloc_er(line_ptrcp);
 	_strcopy(line_ptrcp, line_ptr);
-	int token_count = tokenize_input(line_ptrcp, argv, delim, TMAX);
+	token_count = tokenize_input(line_ptrcp, argv, delim, TMAX);
 
 	argv[token_count] = NULL;
+	if (argv[0] == NULL || _strcmp(argv[0], "\0") == 0)
+	{
+		continue;
+	}
 	execmd(argv);
 
 	}

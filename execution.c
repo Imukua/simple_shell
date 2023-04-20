@@ -8,7 +8,9 @@
 */
 void print_prompt(char *prompt)
 {
-	for (int i = 0; prompt[i] != '\0'; i++)
+	int i;
+
+	for (i = 0; prompt[i] != '\0'; i++)
 	{
 	_putchar(prompt[i]);
 	}
@@ -22,24 +24,25 @@ void print_prompt(char *prompt)
 */
 void execmd(char **argv)
 {
-	int status = execute_built_in(argv);
+	int status;
+	char *argvL[2];
+	char *execution = NULL;
+	pid_t pid;
 
+	status = execute_built_in(argv);
 	if (status != -1 && status != 0)
 	{
 		return;
 	}
-	char *argvL[2];
 
 	argvL[0] = locatecmd(argv[0]);
 
 	if (access(argvL[0], X_OK) == -1)
 	{
-		printf("%s: command not found\n", argv[0]);
+		_putstr("command not found: ");
 		return;
 	}
-	char *execution = NULL;
-
-	pid_t pid = fork();
+		pid = fork();
 
 		if (pid == -1)
 		{
@@ -70,9 +73,10 @@ void execmd(char **argv)
 int tokenize_input(char *input_str, char **tokens,
 const char *delim, int max_tokens)
 {
-	char *token = strtok(input_str, delim);
+	char *token;
 	int token_count = 0;
 
+	token = strtok(input_str, delim);
 	while (token != NULL && token_count < max_tokens)
 	{
 		tokens[token_count] = token;
@@ -80,4 +84,19 @@ const char *delim, int max_tokens)
 		token_count++;
 	}
 	return (token_count);
+}
+
+
+void interactivecheck(void)
+{
+	char *prompt = "cocoon--> ";
+	int interactive = isatty(STDIN_FILENO);
+
+	if (interactive)
+	{
+		print_prompt(prompt);
+	}
+	{
+		return;
+	}
 }

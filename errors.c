@@ -1,5 +1,5 @@
 #include "headers.h"
-/*
+/**
  * handle_input_error - handles input errors
  * @line_value: value returned by getline
  * Return: void
@@ -19,7 +19,7 @@ void handle_input_error(int line_value)
 	}
 }
 
-/*
+/**
  * check_malloc_er - checks if malloc failed
  * @ptr: pointer to the memory allocated
  * Return: void

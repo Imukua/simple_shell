@@ -9,7 +9,7 @@ int cd_bltn(char **args)
 {
 	if (args[1] == NULL)
 	{
-	perror("speeciify a directory");
+		chdir(getenv("HOME"));
 	}
 	else
 	{
@@ -23,13 +23,13 @@ int cd_bltn(char **args)
 
 /**
  * exit_bltn - exits the shell
- * @args: array of pointers to the arguments
+ *
  * Return: 0
  */
 int exit_bltn(char **args)
 {
 	(void) args;
-	_putstr("*EXITING***\n");
+	_putstr("****EXITING***\n");
 	exit(EXIT_SUCCESS);
 }
 /**
@@ -39,9 +39,9 @@ int exit_bltn(char **args)
  */
 int env_bltn(char **args)
 {
-	(void) args;
 	extern char **environ;
 	int i = 0;
+	(void) args;
 
 	while (environ[i] != NULL)
 	{
