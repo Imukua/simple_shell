@@ -28,7 +28,7 @@ void execmd(char **argv,char **progname)
 	char *argvL[2];
 	char *execution = NULL;
 	pid_t pid;
-
+	argv[TMAX] = progname[0];
 
 	status = execute_built_in(argv);
 	if (status != -1 && status != 0)

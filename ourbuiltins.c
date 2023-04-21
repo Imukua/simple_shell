@@ -15,7 +15,12 @@ int cd_bltn(char **args)
 	{
 	if (chdir(args[1]) != 0)
 	{
-	perror("chdir");
+	_putstr(args[TMAX]);
+	_putstr(": ");
+	_putstr(args[0]);
+	_putstr(": ");
+	_putstr(args[1]);
+	_putstr(": No such file or directory\n");
 	}
 	}
 	return (1);
