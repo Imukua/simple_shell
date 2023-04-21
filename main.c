@@ -5,7 +5,7 @@
  *
  * Return: return value of the last executed command.
  */
-int main(void)
+int main(int argc,char *progname[])
 {
 	char *line_ptr = NULL, *line_ptrcp = NULL,
 	*argv[TMAX];
@@ -13,6 +13,7 @@ int main(void)
 	size_t line_size = 0;
 	ssize_t line_value;
 	int token_count;
+	(void) argc;
 
 
 	while (1)
@@ -30,7 +31,7 @@ int main(void)
 	{
 		continue;
 	}
-	execmd(argv);
+	execmd(argv,progname);
 
 	}
 

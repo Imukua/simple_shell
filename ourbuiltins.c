@@ -46,6 +46,7 @@ int env_bltn(char **args)
 	while (environ[i] != NULL)
 	{
 	_putstr(environ[i]);
+	_putchar('\n');
 	i++;
 	}
 	return (1);

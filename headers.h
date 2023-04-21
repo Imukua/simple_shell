@@ -43,7 +43,7 @@ char *_strcat(char *to_str, char *from_str);
 
 /*functions from execution.c - for executing commands*/
 void print_prompt(char *prompt);
-void execmd(char **argv);
+void execmd(char **argv, char **progname);
 char *locatecmd(char *execute);
 void check_argv(char **argv);
 void interactivecheck(void);
@@ -52,4 +52,5 @@ void interactivecheck(void);
 /*functions for error handling*/
 void handle_input_error(int line_value);
 void check_malloc_er(void *ptr);
+void print_error(char *program_name, char *command);
 #endif

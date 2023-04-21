@@ -22,12 +22,13 @@ void print_prompt(char *prompt)
  *
  * Return: return value of the last executed command
 */
-void execmd(char **argv)
+void execmd(char **argv,char **progname)
 {
 	int status;
 	char *argvL[2];
 	char *execution = NULL;
 	pid_t pid;
+
 
 	status = execute_built_in(argv);
 	if (status != -1 && status != 0)
@@ -39,7 +40,7 @@ void execmd(char **argv)
 
 	if (access(argvL[0], X_OK) == -1)
 	{
-		_putstr("command not found: ");
+		print_error(progname[0], argv[0]);
 		return;
 	}
 		pid = fork();
