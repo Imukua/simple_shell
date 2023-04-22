@@ -33,21 +33,22 @@ void check_malloc_er(void *ptr)
 	}
 }
 
-void print_error(char *program_name, char *command)
+void print_error(char *program_name, char *command,int times)
 {
 	char *real_program_name = program_name;
-	char *error_message = "bad interpreter: No such file or directory";
-    char *not_found[] = {"/usr/bin/python3", "-m", "/usr/lib/command-not-found", NULL, NULL, NULL};
-	char *dirrl = "/usr/lib/command-not-found: ";
+    char *not_found[] = {"/usr/bin/python3", " ", "command not found", NULL, NULL, NULL};
+	char *conv_int [] = {" ",NULL};
+
 	not_found[3] = real_program_name;
 	not_found[4] = command;
-
+	conv_int[0] = int_to_str(times);
 	_putstr(real_program_name);
 	_putstr(": ");
-	_putstr(dirrl);
-	_putstr(not_found[0]);
+	_putstr(conv_int[0]);
 	_putstr(": ");
-	_putstr(error_message);
+	_putstr(not_found[4]);
+	_putstr(": ");
+	_putstr(not_found[2]);
 	_putchar('\n');
 }
 
