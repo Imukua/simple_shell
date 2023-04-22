@@ -18,7 +18,13 @@ void _putstr(char *str)
 
 #include <stdlib.h>
 
-char *int_to_str(int num) {
+/**
+ * int_to_str - converts an integer to a string
+ * @num: integer to be converted
+ * Return: pointer to the string
+ */
+char *int_to_str(int num)
+{
     int num_digits = 0;
     int temp = num;
 	int i;
@@ -45,3 +51,52 @@ char *int_to_str(int num) {
 }
 
 
+/**
+ * mystr_tok - tokenizes a string
+ * @str: string to be tokenized
+ * @delim: delimiter
+ * Return: pointer to the token
+ */
+char *mystr_tok(char *str, const char *delim)
+{
+    static char *last = NULL;
+    char *token;
+
+    if (str != NULL) {
+        last = str;
+    } else if (last == NULL || *last == '\0') {
+        return NULL;
+    }
+
+    token = last;
+
+    while (*last != '\0') {
+        if (my_strchr(delim, *last) != NULL) {
+            *last++ = '\0';
+            break;
+        }
+        last++;
+    }
+
+    return token;
+}
+
+/**
+ * my_strchr - finds a character in a string
+ * @st: string to be searched
+ * @ct: character to be found
+ * Return: pointer to the character
+ */
+char *my_strchr(const char *st, int ct)
+{
+    while (*st != '\0') {
+        if (*st == ct) {
+            return (char*)st;
+        }
+        st++;
+    }
+    if (*st == ct) {
+        return (char*)st;
+    }
+    return NULL;
+}

@@ -81,11 +81,11 @@ const char *delim, int max_tokens)
 	char *token;
 	int token_count = 0;
 
-	token = strtok(input_str, delim);
+	token = mystr_tok(input_str, delim);
 	while (token != NULL && token_count < max_tokens)
 	{
 		tokens[token_count] = token;
-		token = strtok(NULL, delim);
+		token = mystr_tok(NULL, delim);
 		token_count++;
 	}
 	return (token_count);

@@ -40,7 +40,8 @@ size_t _strlen(const char *strn, size_t maxlen);
 int _strcmp(char *string2, char *string1);
 char *_strcat(char *to_str, char *from_str);
 char *int_to_str(int num);
-
+char *mystr_tok(char *str, const char *delim);
+char *my_strchr(const char *st, int ct);
 
 
 /*functions from execution.c - for executing commands*/
