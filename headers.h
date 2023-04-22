@@ -39,6 +39,8 @@ const char *delim, int max_tokens);
 size_t _strlen(const char *strn, size_t maxlen);
 int _strcmp(char *string2, char *string1);
 char *_strcat(char *to_str, char *from_str);
+char *int_to_str(int num);
+
 
 
 /*functions from execution.c - for executing commands*/
@@ -52,5 +54,5 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream);
 /*functions for error handling*/
 void handle_input_error(int line_value);
 void check_malloc_er(void *ptr);
-void print_error(char *program_name, char *command);
+void print_error(char *program_name, char *command, int times);
 #endif

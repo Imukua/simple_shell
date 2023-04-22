@@ -24,13 +24,16 @@ void print_prompt(char *prompt)
 */
 void execmd(char **argv,char **progname)
 {
+	static int no_times =1;
 	int status;
+	int times;
 	char *argvL[2];
 	char *execution = NULL;
 	pid_t pid;
 	argv[TMAX] = progname[0];
 
 	status = execute_built_in(argv);
+	times = no_times;
 	if (status != -1 && status != 0)
 	{
 		return;
@@ -40,7 +43,8 @@ void execmd(char **argv,char **progname)
 
 	if (access(argvL[0], X_OK) == -1)
 	{
-		print_error(progname[0], argv[0]);
+		print_error(progname[0], argv[0],times);
+		no_times++;
 		return;
 	}
 		pid = fork();
