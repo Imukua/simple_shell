@@ -19,7 +19,7 @@ int main(int argc,char *progname[])
 	while (1)
 	{
 	interactivecheck();
-	line_value = getline(&line_ptr, &line_size, stdin);
+	line_value = my_getline(&line_ptr, &line_size, stdin);
 	handle_input_error(line_value);
 	line_ptrcp = malloc(sizeof(char) * line_size);
 	check_malloc_er(line_ptrcp);

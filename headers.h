@@ -47,8 +47,8 @@ void execmd(char **argv, char **progname);
 char *locatecmd(char *execute);
 void check_argv(char **argv);
 void interactivecheck(void);
-
-
+char *myrealloc(char *ptr, size_t size);
+ssize_t my_getline(char **lineptr, size_t *n, FILE *stream);
 /*functions for error handling*/
 void handle_input_error(int line_value);
 void check_malloc_er(void *ptr);
