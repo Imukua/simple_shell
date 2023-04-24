@@ -1,6 +1,7 @@
 #ifndef HEADERS_H
 #define HEADERS_H
 #define TMAX 1024
+#define INT_MAX 2147483647
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -29,6 +30,9 @@ int execute_built_in(char **args);
 int cd_bltn(char **args);
 int exit_bltn(char **args);
 int env_bltn(char **args);
+int setenv_builtin(char **args, char ***envp);
+int unsetenv_bltn(char **args);
+
 
 /*functions from strfunctions.c - for string manipulation*/
 int _putchar(char c);
@@ -42,7 +46,8 @@ char *_strcat(char *to_str, char *from_str);
 char *int_to_str(int num);
 char *mystr_tok(char *str, const char *delim);
 char *my_strchr(const char *st, int ct);
-
+int my_isdigit(char digit);
+int str_to_int(const char *str);
 
 /*functions from execution.c - for executing commands*/
 void print_prompt(char *prompt);
@@ -52,6 +57,11 @@ void check_argv(char **argv);
 void interactivecheck(void);
 char *myrealloc(char *ptr, size_t size);
 ssize_t my_getline(char **lineptr, size_t *n, FILE *stream);
+
+/*functions for handling environment variables*/
+int get_env_var_index(char **envp, const char *var_name);
+int unsetenv_builtin(char **args, char ***envp);
+size_t get_envp_size(char **envp);
 /*functions for error handling*/
 void handle_input_error(int line_value);
 void check_malloc_er(void *ptr);

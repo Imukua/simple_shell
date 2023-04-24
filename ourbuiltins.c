@@ -33,9 +33,33 @@ int cd_bltn(char **args)
  */
 int exit_bltn(char **args)
 {
+	int status;
 	(void) args;
-	_putstr("****EXITING***\n");
-	exit(EXIT_SUCCESS);
+
+	if (args[2] != NULL)
+	{
+		_putstr("exit: too many arguments\n");
+		return (1);
+	}
+
+	status = str_to_int(args[1]);
+	if (status == 0)
+	{
+		return (1);
+	}
+
+	if (status > 255)
+	{
+		_putstr("exit: status out of range (0-255)\n");
+		return (1);
+	}
+
+	_putstr("****EXITING");
+	_putchar('(');
+	_putstr(args[1]);
+	_putchar(')');
+	_putstr("****\n");
+	exit(status);
 }
 /**
  * env_bltn - prints the environment
