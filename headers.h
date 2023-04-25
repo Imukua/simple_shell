@@ -57,6 +57,8 @@ void check_argv(char **argv);
 void interactivecheck(void);
 char *myrealloc(char *ptr, size_t size);
 ssize_t my_getline(char **lineptr, size_t *n, FILE *stream);
+char *line_stuff(void);
+int run_n_return(char *line_ptrcp, char **progname);
 
 /*functions for handling environment variables*/
 int get_env_var_index(char **envp, const char *var_name);

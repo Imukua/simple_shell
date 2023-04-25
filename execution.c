@@ -22,28 +22,25 @@ void print_prompt(char *prompt)
  *
  * Return: return value of the last executed command
 */
-void execmd(char **argv,char **progname)
+void execmd(char **argv, char **progname)
 {
-	static int no_times =1;
-	int status;
-	int times;
-	char *argvL[2];
-	char *execution = NULL;
+	static int no_times = 1;
+	int status, times;
+	char *argvL[2], *execution = NULL;
 	pid_t pid;
-	argv[TMAX] = progname[0];
 
+	argv[TMAX] = progname[0];
 	status = execute_built_in(argv);
 	times = no_times;
 	if (status != -1 && status != 0)
 	{
 		return;
 	}
-
 	argvL[0] = locatecmd(argv[0]);
 
 	if (access(argvL[0], X_OK) == -1)
 	{
-		print_error(progname[0], argv[0],times);
+		print_error(progname[0], argv[0], times);
 		no_times++;
 		return;
 	}
@@ -61,8 +58,6 @@ void execmd(char **argv,char **progname)
 			exit(EXIT_FAILURE);
 		} else
 		{
-			int status;
-
 			waitpid(pid, &status, 0);
 		}
 	}
@@ -94,7 +89,7 @@ const char *delim, int max_tokens)
 
 /**
  * interactivecheck - checks if the program is running in interactive mode
- * 
+ *
  * Return: void
 */
 void interactivecheck(void)
@@ -117,56 +112,65 @@ void interactivecheck(void)
  * @lineptr: pointer to the buffer
  * @n: pointer to the size of the buffer
  * @stream: pointer to the stream
- * 
+ *
  * Return: number of characters read
 */
 
-ssize_t my_getline(char **lineptr, size_t *n, FILE *stream) {
-    size_t line_len = 0;
-    char *line = *lineptr;
-    int c;
+ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
+{
+	size_t line_len = 0;
+	char *line = *lineptr;
+	int c;
 	char *new_line;
 
-    if (*lineptr == NULL) {
-        *n = 128;
-        line = (char *) malloc(*n);
-        if (line == NULL) {
-            return -1;
-        }
-        *lineptr = line;
-    }
+	if (*lineptr == NULL)
+	{
+	*n = 128;
+	line = (char *) malloc(*n);
+	if (line == NULL)
+	{
+	return (-1);
+	}
+	*lineptr = line;
+	}
 
-    while ((c = fgetc(stream)) != EOF && c != '\n') {
-        if (line_len + 1 >= *n) { 
-            *n *= 2;
-            new_line = (char *) myrealloc(*lineptr, *n);
-            if (new_line == NULL) {
-                free(*lineptr);
-                *lineptr = NULL;
-                return -1;
-            }
-            line = new_line;
-            *lineptr = line;
-        }
-        line[line_len++] = (char) c;
-    }
+	while ((c = fgetc(stream)) != EOF && c != '\n')
+	{
+	if (line_len + 1 >= *n)
+	{
+	*n *= 2;
+	new_line = (char *) myrealloc(*lineptr, *n);
+	if (new_line == NULL)
+	{
+	free(*lineptr);
+	*lineptr = NULL;
+	return (-1);
+	}
+	line = new_line;
+	*lineptr = line;
+	}
+	line[line_len++] = (char) c;
+	}
 
-    if (line_len + 1 >= *n) {
-        *n *= 2;
-        new_line = (char *) myrealloc(*lineptr, *n);
-        if (new_line == NULL) {
-            free(*lineptr);
-            *lineptr = NULL;
-            return -1;
-        }
-        line = new_line;
-        *lineptr = line;
-    }
-    line[line_len] = '\0';
+	if (line_len + 1 >= *n)
+	{
+	*n *= 2;
+	new_line = (char *) myrealloc(*lineptr, *n);
+	if (new_line == NULL)
+	{
+	free(*lineptr);
+	*lineptr = NULL;
+	return (-1);
+	}
+	line = new_line;
+	*lineptr = line;
+	}
+	line[line_len] = '\0';
 
-    if (c == EOF && line_len == 0) {
-        return -1;
-    }
+	if (c == EOF && line_len == 0)
+	{
+	return (-1);
+	}
 
-    return (ssize_t) line_len;
+	return ((ssize_t) line_len);
 }
