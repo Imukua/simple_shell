@@ -16,8 +16,6 @@ void _putstr(char *str)
 
 }
 
-#include <stdlib.h>
-
 /**
  * int_to_str - converts an integer to a string
  * @num: integer to be converted

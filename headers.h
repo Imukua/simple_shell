@@ -36,8 +36,12 @@ int cd_bltn(char **args);
 int exit_bltn(char **args);
 int env_bltn(char **args);
 int setenv_builtn (char **args);
+int unsetenv_builtn (char **args);
+
+/*helpers of environment builtins*/
 char *my_getenv(const char *name);
 int my_setenv(const char *name, const char *value, int overwrite);
+int my_unsetenv(const char *name);
 int my_putenv(char *str);
 
 

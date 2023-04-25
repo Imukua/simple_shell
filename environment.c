@@ -71,3 +71,41 @@ int my_putenv(char *str)
 
     return 0;
 }
+
+/**
+ * my_unsetenv - removes an environment variable
+ * @name: name of the variable
+ * Return: 0 on success, -1 on failure
+ */
+int my_unsetenv(const char *name)
+{
+    extern char **environ;
+    char **envp;
+    size_t len;
+    int found;
+
+    if (name[0] == '\0' || my_strchr(name, '=') != NULL) {
+        _putstr("Error: Invalid environment variable name\n");
+        return -1;
+    }
+    
+    envp = environ;
+    len = strlen(name);
+    found = 0;
+    
+    while (*envp != NULL) {
+        if (my_strncmp(name, *envp, len) == 0 && (*envp)[len] == '=') {
+            char **dst = envp;
+            char **src = envp + 1;
+            while (*src != NULL) {
+                *dst++ = *src++;
+            }
+            *dst = NULL;
+            found = 1;
+            break;
+        }
+        envp++;
+    }
+    
+    return found ? 0 : -1;
+}

@@ -14,7 +14,7 @@ int cd_bltn(char **args)
 
     if (args[1] == NULL) {
         current_dir = my_getenv("HOME");
-    } else if (strcmp(args[1], "-") == 0) {
+    } else if (_strcmp(args[1], "-") == 0) {
         if (previous_dir == NULL) {
             _putstr("cd: no previous directory\n");
             return 1;
@@ -114,5 +114,33 @@ int setenv_builtn (char **args)
         return (1);
     }
     my_setenv(args[1], args[2], 1);
+    return (1);
+}
+
+/**
+ * unsetenv_builtn - unset an environment variable
+ * @args: arguments
+*/
+int unsetenv_builtn (char **args)
+{
+    int result;
+    if (args[1] == NULL)
+    {
+        _putstr("Error: unsetenv: Too few arguments\n");
+        return (1);
+    }
+    if (my_getenv(args[1]) == NULL)
+    {
+        _putstr("Error: unsetenv: Variable does not exist\n");
+        return (1);
+    }
+   result = my_unsetenv(args[1]);
+    if (result == 0)
+    {
+        _putstr("succesfully unset variable: ");
+        _putstr(args[1]);
+        _putchar('\n');
+        return (1);
+    }
     return (1);
 }
