@@ -17,7 +17,7 @@ void handle_input_error(int line_value)
 	{
 		exit(EXIT_FAILURE);
 	}
-	else 
+	else
 	{
 	perror("readline");
 	}

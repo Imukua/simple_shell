@@ -5,7 +5,7 @@
  * @progname: name of the program.
  * Return: return value of the last executed command.
  */
-int main(int argc,char *progname[])
+int main(int argc, char *progname[])
 {
 	char *line_ptrcp = NULL;
 	(void) argc;

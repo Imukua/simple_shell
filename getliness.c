@@ -3,7 +3,8 @@
 
 ssize_t my_getline(char **lineptr, size_t *n, FILE *stream);
 
-static ssize_t read_buffer(char **lineptr, size_t *n, char **buffer_pos, int *buffer_size, FILE *stream);
+static ssize_t read_buffer(char **lineptr, size_t *n,
+char **buffer_pos, int *buffer_size, FILE *stream);
 
 static ssize_t extend_line(char **lineptr, size_t *n, size_t line_len);
 
@@ -20,67 +21,68 @@ static int is_end_of_input(ssize_t read_result, size_t line_len);
  */
 ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 {
-    char *buffer_pos = NULL;
-    ssize_t read_result;
-    int buffer_size = 0;
-    size_t line_len = 0;
+	char *buffer_pos = NULL;
+	ssize_t read_result;
+	int buffer_size = 0;
+	size_t line_len = 0;
 
-    if (*lineptr == NULL)
-    {
-        *n = INITIAL_BUFFER_SIZE;
-        *lineptr = (char *) malloc(*n);
-        if (*lineptr == NULL)
-        {
-            return (-1);
-        }
-    }
+	if (*lineptr == NULL)
+	{
+	*n = INITIAL_BUFFER_SIZE;
+	*lineptr = (char *) malloc(*n);
+	if (*lineptr == NULL)
+	{
+	return (-1);
+	}
+	}
 
-    read_result = read_buffer(lineptr, n, &buffer_pos, &buffer_size, stream);
-    if (read_result < 0)
-    {
-        return read_result;
-    }
+	read_result = read_buffer(lineptr, n, &buffer_pos, &buffer_size, stream);
+	if (read_result < 0)
+	{
+	return (read_result);
+	}
 
-    while (1)
-    {
-        char c = *buffer_pos++;
+	while (1)
+	{
+	char c = *buffer_pos++;
 
-        if (c == '\n')
-        {
-            break;
-        }
+	if (c == '\n')
+	{
+	break;
+	}
 
-        line_len++;
+	line_len++;
 
-        if (line_len + 1 >= *n)
-        {
-            ssize_t extend_result = extend_line(lineptr, n, line_len);
-            if (extend_result < 0)
-            {
-                return extend_result;
-            }
-        }
+	if (line_len + 1 >= *n)
+	{
+	ssize_t extend_result = extend_line(lineptr, n, line_len);
 
-        (*lineptr)[line_len - 1] = c;
+	if (extend_result < 0)
+	{
+	return (extend_result);
+	}
+	}
 
-        if (buffer_pos >= *lineptr + *n)
-        {
-            read_result = read_buffer(lineptr, n, &buffer_pos, &buffer_size, stream);
-            if (read_result < 0)
-            {
-                return read_result;
-            }
-        }
-    }
+	(*lineptr)[line_len - 1] = c;
 
-    (*lineptr)[line_len] = '\0';
+	if (buffer_pos >= *lineptr + *n)
+	{
+	read_result = read_buffer(lineptr, n, &buffer_pos, &buffer_size, stream);
+	if (read_result < 0)
+	{
+	return (read_result);
+	}
+	}
+	}
 
-    if (is_end_of_input(read_result, line_len))
-    {
-        return (-1);
-    }
+	(*lineptr)[line_len] = '\0';
 
-    return ((ssize_t) line_len);
+	if (is_end_of_input(read_result, line_len))
+	{
+	return (-1);
+	}
+
+	return ((ssize_t) line_len);
 }
 
 /**
@@ -93,28 +95,29 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
  * Return: 0 on success, -1 on failure
  */
 
-static ssize_t read_buffer(char **lineptr, size_t *n, char **buffer_pos, int *buffer_size, FILE *stream)
+static ssize_t read_buffer(char **lineptr, size_t *n,
+char **buffer_pos, int *buffer_size, FILE *stream)
 {
 
-    ssize_t read_result = read(fileno(stream), *lineptr, BUFFER_SIZE);
-    (void) n;
-    if (read_result < 0)
-    {
-        if (errno == EINTR)
-        {
-            return 0;
-        }
-        return (-1);
-    }
-    else if (read_result == 0)
-    {
-        return (-2);
-    }
+	ssize_t read_result = read(fileno(stream), *lineptr, BUFFER_SIZE);
+	(void) n;
+	if (read_result < 0)
+	{
+	if (errno == EINTR)
+	{
+	return (0);
+	}
+	return (-1);
+	}
+	else if (read_result == 0)
+	{
+	return (-2);
+	}
 
-    *buffer_pos = *lineptr;
-    *buffer_size = read_result;
+	*buffer_pos = *lineptr;
+	*buffer_size = read_result;
 
-    return read_result;
+	return (read_result);
 }
 
 /**
@@ -126,23 +129,23 @@ static ssize_t read_buffer(char **lineptr, size_t *n, char **buffer_pos, int *bu
  */
 static ssize_t extend_line(char **lineptr, size_t *n, size_t line_len)
 {
-    char *new_line;
-    *n *= 2;
-    new_line = (char *) realloc(*lineptr, *n);
-    (void) line_len;
-    if (new_line == NULL)
-    {
-        free(*lineptr);
-        *lineptr = NULL;
-        return (-1);
-    }
+	char *new_line;
+	*n *= 2;
+	new_line = (char *) realloc(*lineptr, *n);
+	(void) line_len;
+	if (new_line == NULL)
+	{
+	free(*lineptr);
+	*lineptr = NULL;
+	return (-1);
+	}
 
-    *lineptr = new_line;
+	*lineptr = new_line;
 
-    return 0;
+	return (0);
 }
 
 static int is_end_of_input(ssize_t read_result, size_t line_len)
 {
-    return read_result == (-2) && line_len == 0;
+	return (read_result == (-2) && line_len == 0);
 }

@@ -19,7 +19,7 @@ void print_prompt(char *prompt)
 /**
  * execmd - executes a command
  * @argv: array of pointers to the arguments
- *
+ * @progname: the program name
  * Return: return value of the last executed command
 */
 void execmd(char **argv, char **progname)

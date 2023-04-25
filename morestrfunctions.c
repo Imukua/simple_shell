@@ -23,30 +23,33 @@ void _putstr(char *str)
  */
 char *int_to_str(int num)
 {
-    int num_digits = 0;
-    int temp = num;
+	int num_digits = 0;
+	int temp = num;
 	int i;
 	char *str;
 
-	while (temp != 0) {
-        num_digits++;
-        temp /= 10;
-    }
+	while (temp != 0)
+	{
+	num_digits++;
+	temp /= 10;
+	}
 
-    str = (char *) malloc((num_digits + 1) * sizeof(char));
+	str = (char *) malloc((num_digits + 1) * sizeof(char));
 
-    if (str == NULL) {
-        return NULL;
-    }
+	if (str == NULL)
+	{
+	return (NULL);
+	}
 
-    i = num_digits - 1;
-    while (i >= 0) {
-        str[i] = (num % 10) + '0';
-        num /= 10;
-        i--;
-    }
-    str[num_digits] = '\0';
-    return str;
+	i = num_digits - 1;
+	while (i >= 0)
+	{
+	str[i] = (num % 10) + '0';
+	num /= 10;
+	i--;
+	}
+	str[num_digits] = '\0';
+	return (str);
 }
 
 
@@ -58,26 +61,31 @@ char *int_to_str(int num)
  */
 char *mystr_tok(char *str, const char *delim)
 {
-    static char *last = NULL;
-    char *token;
+	static char *last;
+	char *token;
 
-    if (str != NULL) {
-        last = str;
-    } else if (last == NULL || *last == '\0') {
-        return NULL;
-    }
+	if (str != NULL)
+	{
+	last = str;
+	}
+	else if (last == NULL || *last == '\0')
+	{
+	return (NULL);
+	}
 
-    token = last;
+	token = last;
 
-    while (*last != '\0') {
-        if (my_strchr(delim, *last) != NULL) {
-            *last++ = '\0';
-            break;
-        }
-        last++;
-    }
+	while (*last != '\0')
+	{
+	if (my_strchr(delim, *last) != NULL)
+	{
+	*last++ = '\0';
+	break;
+	}
+	last++;
+	}
 
-    return token;
+	return (token);
 }
 
 /**
@@ -88,16 +96,19 @@ char *mystr_tok(char *str, const char *delim)
  */
 char *my_strchr(const char *st, int ct)
 {
-    while (*st != '\0') {
-        if (*st == ct) {
-            return (char*)st;
-        }
-        st++;
-    }
-    if (*st == ct) {
-        return (char*)st;
-    }
-    return NULL;
+	while (*st != '\0')
+	{
+	if (*st == ct)
+	{
+	return ((char *)st);
+	}
+	st++;
+	}
+	if (*st == ct)
+	{
+	return ((char *)st);
+	}
+	return (NULL);
 }
 
 /**
@@ -105,6 +116,7 @@ char *my_strchr(const char *st, int ct)
  * @digit: character to be checked
  * Return: 1 if digit, 0 otherwise
  */
-int my_isdigit(char digit) {
-    return digit >= '0' && digit <= '9';
+int my_isdigit(char digit)
+{
+	return (digit >= '0' && digit <= '9');
 }

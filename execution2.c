@@ -50,6 +50,7 @@ char *line_stuff(void)
 	char *line_ptr = NULL, *line_ptrcp = NULL;
 	size_t line_size = 0;
 	ssize_t line_value;
+
 	line_value = my_getline(&line_ptr, &line_size, stdin);
 	if (line_value == -2)
 	{
@@ -72,7 +73,7 @@ char *line_stuff(void)
  * @progname: name of the program.
  * Return: 1.
  */
-int run_n_return (char *line_ptrcp,char **progname)
+int run_n_return(char *line_ptrcp, char **progname)
 {
 	char *argv[TMAX], *subline[TMAX];
 	int token_count;
@@ -91,7 +92,7 @@ int run_n_return (char *line_ptrcp,char **progname)
 	{
 		continue;
 	}
-	execmd(argv,progname);
+	execmd(argv, progname);
 	}
 	return (1);
 }
@@ -103,14 +104,16 @@ int run_n_return (char *line_ptrcp,char **progname)
  */
 char *my_getenv(const char *name)
 {
-    extern char **environ; 
-    size_t namelen = _strlen(name, TMAX);
+	extern char **environ;
+	size_t namelen = _strlen(name, TMAX);
 	char **env;
-    
-    for (env = environ; *env != NULL; env++) {
-        if (my_strncmp(name, *env,namelen) == 0 && (*env)[namelen] == '=') {
-            return (*env + namelen + 1);
-        }
-    }
-    return NULL;
+
+	for (env = environ; *env != NULL; env++)
+	{
+		if (my_strncmp(name, *env, namelen) == 0 && (*env)[namelen] == '=')
+		{
+			return (*env + namelen + 1);
+		}
+	}
+	return (NULL);
 }
