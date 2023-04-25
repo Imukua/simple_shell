@@ -6,13 +6,18 @@
 */
 void handle_input_error(int line_value)
 {
+
 	if (line_value == -1)
 	{
 	if (feof(stdin))
 	{
 	exit(EXIT_SUCCESS);
 	}
-	else
+	if (line_value == -2)
+	{
+		exit(EXIT_FAILURE);
+	}
+	else 
 	{
 	perror("readline");
 	}

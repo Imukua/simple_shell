@@ -13,7 +13,8 @@ int execute_built_in(char **args)
 	built_in built_ins[] = {
 	{"cd", cd_bltn},
 	{"exit", exit_bltn},
-	{"env", env_bltn}
+	{"env", env_bltn},
+	{"setenv", setenv_builtn}
 	};
 
 	j = sizeof(built_ins) / sizeof(built_in);

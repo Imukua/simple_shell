@@ -2,6 +2,10 @@
 #define HEADERS_H
 #define TMAX 1024
 #define INT_MAX 2147483647
+#define INITIAL_BUFFER_SIZE 128
+#define BUFFER_SIZE BUFSIZ
+#define MAX_ENV_VAR_LENGTH 1000
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,6 +19,7 @@
 #include <errno.h>
 #include <stdio.h>
 #include <string.h>
+
 
 /*objects for our builtins*/
 typedef int (*built_in_func)(char **);
@@ -30,8 +35,10 @@ int execute_built_in(char **args);
 int cd_bltn(char **args);
 int exit_bltn(char **args);
 int env_bltn(char **args);
-int setenv_builtin(char **args, char ***envp);
-int unsetenv_bltn(char **args);
+int setenv_builtn (char **args);
+char *my_getenv(const char *name);
+int my_setenv(const char *name, const char *value, int overwrite);
+int my_putenv(char *str);
 
 
 /*functions from strfunctions.c - for string manipulation*/
@@ -48,6 +55,7 @@ char *mystr_tok(char *str, const char *delim);
 char *my_strchr(const char *st, int ct);
 int my_isdigit(char digit);
 int str_to_int(const char *str);
+int my_strncmp(const char *s1, const char *s2, size_t no);
 
 /*functions from execution.c - for executing commands*/
 void print_prompt(char *prompt);
@@ -56,14 +64,17 @@ char *locatecmd(char *execute);
 void check_argv(char **argv);
 void interactivecheck(void);
 char *myrealloc(char *ptr, size_t size);
-ssize_t my_getline(char **lineptr, size_t *n, FILE *stream);
 char *line_stuff(void);
 int run_n_return(char *line_ptrcp, char **progname);
+
+/*functions from getlinefunc.c - for getting the line from the user*/
+ssize_t my_getline(char **nlptr, size_t *n, FILE *stream);
 
 /*functions for handling environment variables*/
 int get_env_var_index(char **envp, const char *var_name);
 int unsetenv_builtin(char **args, char ***envp);
 size_t get_envp_size(char **envp);
+
 /*functions for error handling*/
 void handle_input_error(int line_value);
 void check_malloc_er(void *ptr);

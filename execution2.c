@@ -12,7 +12,7 @@ char *locatecmd(char *execute)
 	char *cmd = NULL;
 	struct stat st;
 
-	path = getenv("PATH");
+	path = my_getenv("PATH");
 	pathcpy = malloc(sizeof(char) * _strlen(path, TMAX));
 	_strcopy(pathcpy, path);
 	token = strtok(pathcpy, ":");
@@ -50,9 +50,15 @@ char *line_stuff(void)
 	char *line_ptr = NULL, *line_ptrcp = NULL;
 	size_t line_size = 0;
 	ssize_t line_value;
-
 	line_value = my_getline(&line_ptr, &line_size, stdin);
+	if (line_value == -2)
+	{
+		_putchar('\n');
+		exit(EXIT_SUCCESS);
+	}
+
 	handle_input_error(line_value);
+
 	line_ptrcp = malloc(sizeof(char) * line_size);
 	check_malloc_er(line_ptrcp);
 	_strcopy(line_ptrcp, line_ptr);
@@ -90,21 +96,21 @@ int run_n_return (char *line_ptrcp,char **progname)
 	return (1);
 }
 
-int fgetc(FILE *stream) {
-    if (stream == NULL || stream->buffer == NULL) {
-        return EOF;
-    }
-
-    if (stream->pos >= stream->length) {
-        // Buffer is empty, fill it
-        stream->length = fread(stream->buffer, 1, stream->bufsize, stream->file);
-        if (stream->length == 0) {
-            // End of file or error
-            return EOF;
+/**
+ * my_getenv - gets the environment variable.
+ * @name: name of the variable.
+ * Return: pointer to the variable.
+ */
+char *my_getenv(const char *name)
+{
+    extern char **environ; 
+    size_t namelen = _strlen(name, TMAX);
+	char **env;
+    
+    for (env = environ; *env != NULL; env++) {
+        if (my_strncmp(name, *env,namelen) == 0 && (*env)[namelen] == '=') {
+            return (*env + namelen + 1);
         }
-        stream->pos = 0;
     }
-
-    // Return next character in buffer
-    return (unsigned char) stream->buffer[stream->pos++];
+    return NULL;
 }
