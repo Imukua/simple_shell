@@ -58,15 +58,17 @@ int cd_bltn(char **args)
 int exit_bltn(char **args)
 {
 	int status;
-	(void) args;
 
 	if (args[2] != NULL)
 	{
 		_putstr("exit: too many arguments\n");
 		return (1);
 	}
-
-	status = str_to_int(args[1]);
+	if (args[1] == NULL)
+	{
+		exit(0);
+	}
+	status = str_to_int((const char *)args[1]);
 	if (status == 0)
 	{
 		return (1);
