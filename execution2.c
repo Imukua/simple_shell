@@ -10,12 +10,13 @@ char *locatecmd(char *execute)
 	char *pathcpy = NULL;
 	char *token = NULL;
 	char *cmd = NULL;
+	const char *delim = ":";
 	struct stat st;
 
 	path = my_getenv("PATH");
 	pathcpy = malloc(sizeof(char) * _strlen(path, TMAX));
 	_strcopy(pathcpy, path);
-	token = strtok(pathcpy, ":");
+	token = mystr_tok(pathcpy, delim);
 	while (token != NULL)
 	{
 	cmd = malloc(sizeof(char) *
@@ -30,7 +31,7 @@ char *locatecmd(char *execute)
 	return (cmd);
 	}
 	free(cmd);
-	token = strtok(NULL, ":");
+	token = mystr_tok(NULL, delim);
 	}
 	free(pathcpy);
 	if (stat(execute, &st) == 0)
