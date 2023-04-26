@@ -53,7 +53,7 @@ void execmd(char **argv, char **progname)
 		} else if (pid == 0)
 		{
 			execution = locatecmd(argv[0]);
-			execve(execution, argv, NULL);
+			execve(execution, argv, environ);
 			perror("execve");
 			exit(EXIT_FAILURE);
 		} else
