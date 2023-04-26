@@ -142,7 +142,7 @@ static ssize_t extend_line(char **lineptr, size_t *n, size_t line_len)
 {
 	char *new_line;
 	*n *= 2;
-	new_line = (char *) realloc(*lineptr, *n);
+	new_line = (char *) myrealloc(*lineptr, *n);
 	(void) line_len;
 	if (new_line == NULL)
 	{
