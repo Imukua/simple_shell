@@ -28,29 +28,24 @@ int cd_bltn(char **args)
 	{
 	current_dir = args[1];
 	}
-
 	cwd = getcwd(NULL, 0);
 	if (cwd == NULL)
 	{
 	perror("cd");
 	return (1);
 	}
-
 	if (chdir(current_dir) != 0)
 	{
 	perror("cd");
 	free(cwd);
 	return (1);
 	}
-
 	if (previous_dir != NULL)
 	{
 	free(previous_dir);
 	}
 	previous_dir = cwd;
-
 	my_setenv(home_dir, previous_dir, 1);
-
 	return (1);
 }
 
@@ -97,7 +92,6 @@ int exit_bltn(char **args)
  */
 int env_bltn(char **args)
 {
-	extern char **environ;
 	int i = 0;
 	(void) args;
 

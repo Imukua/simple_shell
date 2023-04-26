@@ -145,6 +145,12 @@ static ssize_t extend_line(char **lineptr, size_t *n, size_t line_len)
 	return (0);
 }
 
+/**
+ * is_end_of_input - checks fro end
+ * @read_result: read result
+ * @line_len: Line length read
+ * Return: value
+*/
 static int is_end_of_input(ssize_t read_result, size_t line_len)
 {
 	return (read_result == (-2) && line_len == 0);

@@ -38,6 +38,13 @@ void check_malloc_er(void *ptr)
 	}
 }
 
+/**
+ * print_error - prints error message
+ * @program_name: name of the program
+ * @command: command that failed
+ * @times: number of times the command failed
+ * Return: void
+ */
 void print_error(char *program_name, char *command, int times)
 {
 	char *real_program_name = program_name;

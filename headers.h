@@ -5,7 +5,7 @@
 #define INITIAL_BUFFER_SIZE 128
 #define BUFFER_SIZE BUFSIZ
 #define MAX_ENV_VAR_LENGTH 1000
-
+extern char **environ;
 
 #include <stdio.h>
 #include <stdlib.h>

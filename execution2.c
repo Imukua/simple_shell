@@ -104,7 +104,6 @@ int run_n_return(char *line_ptrcp, char **progname)
  */
 char *my_getenv(const char *name)
 {
-	extern char **environ;
 	size_t namelen = _strlen(name, TMAX);
 	char **env;
 
