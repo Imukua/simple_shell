@@ -37,6 +37,7 @@ int my_setenv(const char *name, const char *value, int overwrite)
 	result = -1;
 	}
 	}
+	free(new_env_var);
 	}
 
 	return (result);
