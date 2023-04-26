@@ -69,10 +69,6 @@ int exit_bltn(char **args)
 		exit(0);
 	}
 	status = str_to_int((const char *)args[1]);
-	if (status == 0)
-	{
-		return (1);
-	}
 
 	if (status > 255)
 	{
