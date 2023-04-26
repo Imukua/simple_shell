@@ -98,9 +98,10 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 static ssize_t read_buffer(char **lineptr, size_t *n,
 char **buffer_pos, int *buffer_size, FILE *stream)
 {
-
+	int last_char_index;
 	ssize_t read_result = read(fileno(stream), *lineptr, BUFFER_SIZE);
 	(void) n;
+	
 	if (read_result < 0)
 	{
 	if (errno == EINTR)
@@ -112,6 +113,16 @@ char **buffer_pos, int *buffer_size, FILE *stream)
 	else if (read_result == 0)
 	{
 	return (-2);
+	}
+
+	last_char_index = read_result - 1;
+
+    if ((*lineptr)[last_char_index] != '\n')
+	{
+        (*lineptr)[last_char_index + 1] = '\n';
+        (*lineptr)[last_char_index + 2] = '\0';
+
+        return (read_result + 1);
 	}
 
 	*buffer_pos = *lineptr;

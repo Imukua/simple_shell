@@ -94,7 +94,7 @@ const char *delim, int max_tokens)
 */
 void interactivecheck(void)
 {
-	char *prompt = "cocoon--> ";
+	char *prompt = "$ ";
 	int interactive = isatty(STDIN_FILENO);
 
 	if (interactive)
