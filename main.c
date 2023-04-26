@@ -2,14 +2,16 @@
 /**
  * main - executes a simple UNIX CLI.
  * @argc: array of pointers to the arguments.
- * @progname: name of the program.
+ * @argv: name of the program.
  * Return: return value of the last executed command.
  */
-int main(int argc, char *progname[])
+int main(int argc, char *argv[])
 {
 	char *line_ptrcp = NULL;
-	(void) argc;
+	char *progname[2];
 
+	(void) argc;
+	progname[0] = argv[0];
 	while (1)
 	{
 	interactivecheck();

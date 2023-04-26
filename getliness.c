@@ -101,7 +101,7 @@ char **buffer_pos, int *buffer_size, FILE *stream)
 	int last_char_index;
 	ssize_t read_result = read(fileno(stream), *lineptr, BUFFER_SIZE);
 	(void) n;
-	
+
 	if (read_result < 0)
 	{
 	if (errno == EINTR)
@@ -117,12 +117,12 @@ char **buffer_pos, int *buffer_size, FILE *stream)
 
 	last_char_index = read_result - 1;
 
-    if ((*lineptr)[last_char_index] != '\n')
+	if ((*lineptr)[last_char_index] != '\n')
 	{
-        (*lineptr)[last_char_index + 1] = '\n';
-        (*lineptr)[last_char_index + 2] = '\0';
+		(*lineptr)[last_char_index + 1] = '\n';
+		(*lineptr)[last_char_index + 2] = '\0';
 
-        return (read_result + 1);
+		return (read_result + 1);
 	}
 
 	*buffer_pos = *lineptr;
