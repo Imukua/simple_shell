@@ -35,8 +35,8 @@ int execute_built_in(char **args);
 int cd_bltn(char **args);
 int exit_bltn(char **args);
 int env_bltn(char **args);
-int setenv_builtn (char **args);
-int unsetenv_builtn (char **args);
+int setenv_builtn(char **args);
+int unsetenv_builtn(char **args);
 
 /*helpers of environment builtins*/
 char *my_getenv(const char *name);
