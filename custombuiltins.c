@@ -61,7 +61,7 @@ int exit_bltn(char **args)
 
 	if (args[2] != NULL)
 	{
-		_putstr("exit: too many arguments\n");
+		print_error(args[TMAX], args[0], 1);
 		return (1);
 	}
 	if (args[1] == NULL)
@@ -76,15 +76,10 @@ int exit_bltn(char **args)
 
 	if (status > 255)
 	{
-		_putstr("exit: status out of range (0-255)\n");
+		print_error(args[TMAX], args[0], 1);
 		return (1);
 	}
-
-	_putstr("****EXITING");
-	_putchar('(');
-	_putstr(args[1]);
-	_putchar(')');
-	_putstr("****\n");
+	_putchar('\n');
 	exit(status);
 }
 /**
