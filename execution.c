@@ -69,7 +69,8 @@ void execmd(char **argv, char **progname)
  *
  * Return: number of tokens
 */
-int tokenize_input(char *input_str, char **tokens, const char *delim, int max_tokens)
+int tokenize_input(char *input_str, char **tokens,
+const char *delim, int max_tokens)
 {
 	char *token;
 	int token_count = 0;

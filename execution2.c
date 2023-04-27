@@ -65,7 +65,7 @@ char *line_stuff(void)
 	check_malloc_er(line_ptrcp);
 	_strcopy(line_ptrcp, line_ptr);
 
-	free (line_ptr);
+	free(line_ptr);
 	return (line_ptrcp);
 }
 
