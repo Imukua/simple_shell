@@ -33,10 +33,11 @@ int execute_built_in(char **args);
 
 /*functions for executing builtins*/
 int cd_bltn(char **args);
-int exit_bltn(char **args);
+int exit_bltn(char **args, char *line_ptrcp);
 int env_bltn(char **args);
 int setenv_builtn(char **args);
 int unsetenv_builtn(char **args);
+
 
 /*helpers of environment builtins*/
 char *my_getenv(const char *name);
@@ -64,13 +65,14 @@ int my_isspace(int ch);
 
 /*functions from execution.c - for executing commands*/
 void print_prompt(char *prompt);
-void execmd(char **argv, char **progname);
+void execmd(char **argv, char **progname, char *line_ptrcp);
 char *locatecmd(char *execute);
 void check_argv(char **argv);
 void interactivecheck(void);
 char *myrealloc(char *ptr, size_t size);
 char *line_stuff(void);
 int run_n_return(char *line_ptrcp, char **progname);
+int count_args(char **argv);
 
 /*functions from getlinefunc.c - for getting the line from the user*/
 ssize_t my_getline(char **nlptr, size_t *n, FILE *stream);

@@ -101,7 +101,11 @@ int run_n_return(char *line_ptrcp, char **progname)
 	{
 		continue;
 	}
-	execmd(argv, progname);
+	if (_strcmp(argv[0], "exit") == 0)
+	{
+		exit_bltn(argv,line_ptrcp);
+	}
+	execmd(argv, progname ,line_ptrcp);
 	}
 	return (1);
 }
@@ -124,4 +128,15 @@ char *my_getenv(const char *name)
 		}
 	}
 	return (NULL);
+}
+
+int count_args(char **argv)
+{
+	int i = 0;
+
+	while (argv[i] != NULL)
+	{
+		i++;
+	}
+	return (i);
 }

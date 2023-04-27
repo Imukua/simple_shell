@@ -22,7 +22,7 @@ void print_prompt(char *prompt)
  * @progname: the program name
  * Return: return value of the last executed command
 */
-void execmd(char **argv, char **progname)
+void execmd(char **argv, char **progname,char *line_ptrcp)
 {
 	int status, times;
 	char *argvL[2], *execution = NULL;
@@ -50,12 +50,14 @@ void execmd(char **argv, char **progname)
 		if (pid == -1)
 		{
 			perror("fork");
+			free(line_ptrcp);
 			exit(EXIT_FAILURE);
 		} else if (pid == 0)
 		{
 			execution = locatecmd(argv[0]);
 			execve(execution, argv, environ);
 			perror("execve");
+			free(line_ptrcp);
 			exit(EXIT_FAILURE);
 		} else
 		{

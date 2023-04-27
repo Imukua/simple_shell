@@ -55,17 +55,21 @@ int cd_bltn(char **args)
  *@args: arguments
  * Return: 0
  */
-int exit_bltn(char **args)
+int exit_bltn(char **args, char *line_ptrcp)
 {
-	int status;
+	int status = 0;
+	int argum = 0;
 
-	if (args[2] != NULL)
+	argum = count_args(args);
+
+	if (argum > 2 )
 	{
 		print_error(args[TMAX], args[0], 1);
 		return (1);
 	}
 	if (args[1] == NULL)
 	{
+		free(line_ptrcp);
 		exit(0);
 	}
 	status = str_to_int((const char *)args[1]);
@@ -79,6 +83,7 @@ int exit_bltn(char **args)
 		print_error(args[TMAX], args[0], 1);
 		return (1);
 	}
+	free(line_ptrcp);
 	exit(status);
 }
 /**
