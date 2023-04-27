@@ -10,7 +10,6 @@ void handle_input_error(int line_value, char *line_ptr)
 
 	if (line_value == -1)
 	{
-	_putstr("\n");
 	if (feof(stdin))
 	{
 	free(line_ptr);
