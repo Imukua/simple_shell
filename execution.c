@@ -36,14 +36,12 @@ void execmd(char **argv, char **progname)
 		return;
 	}
 	argvL[0] = locatecmd(argv[0]);
-
 	if (argvL[0] == NULL)
 	{
 		print_error(progname[0], argv[0], no_times);
 		no_times++;
 		return;
 	}
-	
 	if (access(argvL[0], X_OK) == -1)
 	{
 		print_error(progname[0], argv[0], 1);
