@@ -51,6 +51,7 @@ char *line_stuff(void)
 	char *line_ptr = NULL, *line_ptrcp = NULL;
 	size_t line_size = 0;
 	ssize_t line_value;
+	int len;
 
 	line_value = getline(&line_ptr, &line_size, stdin);
 	if (line_value == -2)
@@ -64,6 +65,12 @@ char *line_stuff(void)
 	line_ptrcp = malloc(sizeof(char) * line_size);
 	check_malloc_er(line_ptrcp);
 	_strcopy(line_ptrcp, line_ptr);
+
+	len = strlen(line_ptrcp);
+    while (len > 0 && my_isspace(line_ptrcp[len - 1]))
+	{
+        line_ptrcp[--len] = '\0';
+    }
 
 	free(line_ptr);
 	return (line_ptrcp);

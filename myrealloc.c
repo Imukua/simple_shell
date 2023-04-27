@@ -107,4 +107,14 @@ int my_strncmp(const char *s1, const char *s2, size_t no)
 	return (0);
 }
 
+/**
+ * my_isspace - checks if a character is a space
+ * @ch: character to check
+ * Return: 1 if it is a space, 0 otherwise
+ */
+int my_isspace(int ch)
+{
+    return (ch == ' ' || ch == '\t' || ch == '\n' ||
+           ch == '\r' || ch == '\f' || ch == '\v');
+}
 

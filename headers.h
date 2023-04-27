@@ -60,6 +60,7 @@ char *my_strchr(const char *st, int ct);
 int my_isdigit(char digit);
 int str_to_int(const char *str);
 int my_strncmp(const char *s1, const char *s2, size_t no);
+int my_isspace(int ch);
 
 /*functions from execution.c - for executing commands*/
 void print_prompt(char *prompt);
