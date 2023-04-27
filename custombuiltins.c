@@ -79,7 +79,6 @@ int exit_bltn(char **args)
 		print_error(args[TMAX], args[0], 1);
 		return (1);
 	}
-	_putchar('\n');
 	exit(status);
 }
 /**
