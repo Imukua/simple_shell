@@ -12,7 +12,6 @@ void handle_input_error(int line_value, char *line_ptr)
 	{
 	if (feof(stdin))
 	{
-	write(STDOUT_FILENO, "\n", 1);
 	free(line_ptr);
 	exit(EXIT_SUCCESS);
 	}
