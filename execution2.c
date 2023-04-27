@@ -130,6 +130,11 @@ char *my_getenv(const char *name)
 	return (NULL);
 }
 
+/**
+ * count_args - counts the number of arguments.
+ * @argv: arguments.
+ * Return: number of arguments.
+ */
 int count_args(char **argv)
 {
 	int i = 0;
