@@ -73,6 +73,7 @@ char *myrealloc(char *ptr, size_t size);
 char *line_stuff(void);
 int run_n_return(char *line_ptrcp, char **progname);
 int count_args(char **argv);
+void checkf(char **argvL, char **argv);
 
 /*functions from getlinefunc.c - for getting the line from the user*/
 ssize_t my_getline(char **nlptr, size_t *n, FILE *stream);

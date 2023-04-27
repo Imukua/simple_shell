@@ -26,7 +26,7 @@ void print_prompt(char *prompt)
 void execmd(char **argv, char **progname, char *line_ptrcp)
 {
 	int status, times;
-	char *argvL[2], *execution = NULL;
+	char *argvL[2];
 	pid_t pid;
 
 	argv[TMAX] = progname[0];
@@ -51,17 +51,20 @@ void execmd(char **argv, char **progname, char *line_ptrcp)
 		if (pid == -1)
 		{
 			perror("fork");
+			checkf(argvL, argv);
 			free(line_ptrcp);
 			exit(EXIT_FAILURE);
-		} else if (pid == 0)
+		}
+		else if (pid == 0)
 		{
-			execution = locatecmd(argv[0]);
-			execve(execution, argv, environ);
+			execve(argvL[0], argv, environ);
 			perror("execve");
+			checkf(argvL, argv);
 			free(line_ptrcp);
 			exit(EXIT_FAILURE);
 		} else
 		{
+			checkf(argvL, argv);
 			waitpid(pid, &status, 0);
 		}
 	}
@@ -127,3 +130,19 @@ void interactivecheck(void)
 		return;
 	}
 }
+
+/**
+ * checkf - checks if the command is in the current directory
+ * @argvL: array of pointers to the arguments
+ * @argv: array of pointers to the arguments
+ *
+ * Return: void
+*/
+void checkf(char **argvL, char **argv)
+{
+	if (_strcmp(argvL[0], argv[0]) != 0)
+	{
+		free(argvL[0]);
+	}
+}
+
