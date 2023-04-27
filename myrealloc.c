@@ -118,3 +118,15 @@ int my_isspace(int ch)
 	ch == '\r' || ch == '\f' || ch == '\v');
 }
 
+/**
+ * checkf2 - checks if the file exists
+ * @argvL: array of pointers to the tokens
+ * @argv: array of pointers to the tokens
+ */
+void checkf2(char **argvL, char **argv)
+{
+	if (_strcmp(argvL[0], argv[0]) != 0)
+	{
+		free(argvL[0]);
+	}
+}

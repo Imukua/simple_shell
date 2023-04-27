@@ -20,7 +20,7 @@ void print_prompt(char *prompt)
  * execmd - executes a command
  * @argv: array of pointers to the arguments
  * @progname: the program name
- * 
+ * @line_ptrcp: copy of the input string
  * Return: return value of the last executed command
 */
 void execmd(char **argv, char **progname, char *line_ptrcp)
@@ -47,24 +47,21 @@ void execmd(char **argv, char **progname, char *line_ptrcp)
 		return;
 	}
 		pid = fork();
-
 		if (pid == -1)
 		{
 			perror("fork");
-			checkf(argvL, argv);
-			free(line_ptrcp);
+			checkf(argvL, argv, line_ptrcp);
 			exit(EXIT_FAILURE);
 		}
 		else if (pid == 0)
 		{
 			execve(argvL[0], argv, environ);
 			perror("execve");
-			checkf(argvL, argv);
-			free(line_ptrcp);
+			checkf(argvL, argv, line_ptrcp);
 			exit(EXIT_FAILURE);
 		} else
 		{
-			checkf(argvL, argv);
+			checkf2(argvL, argv);
 			waitpid(pid, &status, 0);
 		}
 	}
@@ -77,37 +74,39 @@ void execmd(char **argv, char **progname, char *line_ptrcp)
  *
  * Return: number of tokens
 */
-int tokenize_input(char *input_str, char **tokens, const char *delim, int max_tokens)
+int tokenize_input(char *input_str, char **tokens,
+const char *delim, int max_tokens)
 {
-    char *token;
-    int token_count = 0;
+	char *token;
+	int token_count = 0;
 
-    token = mystr_tok(input_str, delim);
-    while (token != NULL && token_count < max_tokens)
-    {
-        int len = strlen(token);
-        if (len > 0)
-        {
-            while (my_isspace(*token))
-            {
-                token++;
-                len--;
-            }
-            while (len > 0 && my_isspace(token[len - 1]))
-            {
-                token[--len] = '\0';
-            }
+	token = mystr_tok(input_str, delim);
+	while (token != NULL && token_count < max_tokens)
+	{
+	int len = strlen(token);
 
-            if (len > 0)
-            {
-                tokens[token_count] = token;
-                token_count++;
-            }
-        }
-        token = mystr_tok(NULL, delim);
-    }
+	if (len > 0)
+	{
+	while (my_isspace(*token))
+	{
+	token++;
+	len--;
+	}
+	while (len > 0 && my_isspace(token[len - 1]))
+	{
+	token[--len] = '\0';
+	}
 
-    return token_count;
+	if (len > 0)
+	{
+	tokens[token_count] = token;
+	token_count++;
+	}
+	}
+	token = mystr_tok(NULL, delim);
+	}
+
+	return (token_count);
 }
 
 
@@ -135,14 +134,15 @@ void interactivecheck(void)
  * checkf - checks if the command is in the current directory
  * @argvL: array of pointers to the arguments
  * @argv: array of pointers to the arguments
- *
+ * @line_ptrcp: copy of the input string
  * Return: void
 */
-void checkf(char **argvL, char **argv)
+void checkf(char **argvL, char **argv, char *line_ptrcp)
 {
 	if (_strcmp(argvL[0], argv[0]) != 0)
 	{
 		free(argvL[0]);
 	}
+	free(line_ptrcp);
 }
 
