@@ -20,7 +20,7 @@ void print_prompt(char *prompt)
  * execmd - executes a command
  * @argv: array of pointers to the arguments
  * @progname: the program name
- * @line_ptrcp: pointer to the line
+ * 
  * Return: return value of the last executed command
 */
 void execmd(char **argv, char **progname, char *line_ptrcp)
@@ -74,21 +74,39 @@ void execmd(char **argv, char **progname, char *line_ptrcp)
  *
  * Return: number of tokens
 */
-int tokenize_input(char *input_str, char **tokens,
-const char *delim, int max_tokens)
+int tokenize_input(char *input_str, char **tokens, const char *delim, int max_tokens)
 {
-	char *token;
-	int token_count = 0;
+    char *token;
+    int token_count = 0;
 
-	token = mystr_tok(input_str, delim);
-	while (token != NULL && token_count < max_tokens)
-	{
-		tokens[token_count] = token;
-		token = mystr_tok(NULL, delim);
-		token_count++;
-	}
-	return (token_count);
+    token = mystr_tok(input_str, delim);
+    while (token != NULL && token_count < max_tokens)
+    {
+        int len = strlen(token);
+        if (len > 0)
+        {
+            while (my_isspace(*token))
+            {
+                token++;
+                len--;
+            }
+            while (len > 0 && my_isspace(token[len - 1]))
+            {
+                token[--len] = '\0';
+            }
+
+            if (len > 0)
+            {
+                tokens[token_count] = token;
+                token_count++;
+            }
+        }
+        token = mystr_tok(NULL, delim);
+    }
+
+    return token_count;
 }
+
 
 
 /**
