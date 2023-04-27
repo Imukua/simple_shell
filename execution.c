@@ -24,7 +24,6 @@ void print_prompt(char *prompt)
 */
 void execmd(char **argv, char **progname)
 {
-	static int no_times = 1;
 	int status, times;
 	char *argvL[2], *execution = NULL;
 	pid_t pid;
@@ -38,14 +37,12 @@ void execmd(char **argv, char **progname)
 	argvL[0] = locatecmd(argv[0]);
 	if (argvL[0] == NULL)
 	{
-		print_error(progname[0], argv[0], no_times);
-		no_times++;
+		print_error(progname[0], argv[0], 1);
 		return;
 	}
 	if (access(argvL[0], X_OK) == -1)
 	{
 		print_error(progname[0], argv[0], 1);
-		no_times++;
 		return;
 	}
 		pid = fork();

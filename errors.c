@@ -4,17 +4,19 @@
  * @line_value: value returned by getline
  * Return: void
 */
-void handle_input_error(int line_value)
+void handle_input_error(int line_value, char *line_ptr)
 {
 
 	if (line_value == -1)
 	{
 	if (feof(stdin))
 	{
+	free(line_ptr);
 	exit(EXIT_SUCCESS);
 	}
 	if (line_value == -2)
 	{
+	free(line_ptr);
 	exit(EXIT_FAILURE);
 	}
 	else

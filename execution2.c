@@ -55,11 +55,11 @@ char *line_stuff(void)
 	line_value = getline(&line_ptr, &line_size, stdin);
 	if (line_value == -2)
 	{
-		_putchar('\n');
+		free(line_ptr);
 		exit(EXIT_SUCCESS);
 	}
 
-	handle_input_error(line_value);
+	handle_input_error(line_value, line_ptr);
 
 	line_ptrcp = malloc(sizeof(char) * line_size);
 	check_malloc_er(line_ptrcp);

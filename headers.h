@@ -80,7 +80,7 @@ int unsetenv_builtin(char **args, char ***envp);
 size_t get_envp_size(char **envp);
 
 /*functions for error handling*/
-void handle_input_error(int line_value);
+void handle_input_error(int line_value, char *line_ptr);
 void check_malloc_er(char *ptr);
 void print_error(char *program_name, char *command, int times);
 #endif
