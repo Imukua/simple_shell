@@ -17,9 +17,7 @@ int main(int argc, char *argv[])
 	interactivecheck();
 	line_ptrcp = line_stuff();
 	run_n_return(line_ptrcp, progname);
-
-	}
-
 	free(line_ptrcp);
+	}
 	return (0);
 }

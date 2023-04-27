@@ -15,7 +15,7 @@ void handle_input_error(int line_value)
 	}
 	if (line_value == -2)
 	{
-		exit(EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 	}
 	else
 	{
@@ -29,10 +29,11 @@ void handle_input_error(int line_value)
  * @ptr: pointer to the memory allocated
  * Return: void
  */
-void check_malloc_er(void *ptr)
+void check_malloc_er(char *ptr)
 {
 	if (ptr == NULL)
 	{
+	free(ptr);
 	perror("malloc");
 	exit(EXIT_FAILURE);
 	}
@@ -63,5 +64,6 @@ void print_error(char *program_name, char *command, int times)
 	_putstr(": ");
 	_putstr(not_found[2]);
 	_putchar('\n');
+	free(conv_int[0]);
 }
 

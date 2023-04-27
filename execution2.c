@@ -14,7 +14,7 @@ char *locatecmd(char *execute)
 	struct stat st;
 
 	path = my_getenv("PATH");
-	pathcpy = malloc(sizeof(char) * _strlen(path, TMAX));
+	pathcpy = malloc(sizeof(char) * _strlen(path, TMAX) + 1);
 	_strcopy(pathcpy, path);
 	token = mystr_tok(pathcpy, delim);
 	while (token != NULL)
@@ -52,7 +52,7 @@ char *line_stuff(void)
 	size_t line_size = 0;
 	ssize_t line_value;
 
-	line_value = my_getline(&line_ptr, &line_size, stdin);
+	line_value = getline(&line_ptr, &line_size, stdin);
 	if (line_value == -2)
 	{
 		_putchar('\n');
@@ -65,6 +65,7 @@ char *line_stuff(void)
 	check_malloc_er(line_ptrcp);
 	_strcopy(line_ptrcp, line_ptr);
 
+	free (line_ptr);
 	return (line_ptrcp);
 }
 
