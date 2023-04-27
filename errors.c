@@ -2,6 +2,7 @@
 /**
  * handle_input_error - handles input errors
  * @line_value: value returned by getline
+ * @line_ptr: pointer to the line
  * Return: void
 */
 void handle_input_error(int line_value, char *line_ptr)

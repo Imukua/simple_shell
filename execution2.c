@@ -67,10 +67,10 @@ char *line_stuff(void)
 	_strcopy(line_ptrcp, line_ptr);
 
 	len = strlen(line_ptrcp);
-    while (len > 0 && my_isspace(line_ptrcp[len - 1]))
+	while (len > 0 && my_isspace(line_ptrcp[len - 1]))
 	{
-        line_ptrcp[--len] = '\0';
-    }
+		line_ptrcp[--len] = '\0';
+	}
 
 	free(line_ptr);
 	return (line_ptrcp);
