@@ -53,6 +53,7 @@ int cd_bltn(char **args)
 /**
  * exit_bltn - exits the shell
  *@args: arguments
+ *@line_ptrcp: pointer to the line
  * Return: 0
  */
 int exit_bltn(char **args, char *line_ptrcp)
@@ -62,7 +63,7 @@ int exit_bltn(char **args, char *line_ptrcp)
 
 	argum = count_args(args);
 
-	if (argum > 2 )
+	if (argum > 2)
 	{
 		print_error(args[TMAX], args[0], 1);
 		return (1);

@@ -103,9 +103,9 @@ int run_n_return(char *line_ptrcp, char **progname)
 	}
 	if (_strcmp(argv[0], "exit") == 0)
 	{
-		exit_bltn(argv,line_ptrcp);
+		exit_bltn(argv, line_ptrcp);
 	}
-	execmd(argv, progname ,line_ptrcp);
+	execmd(argv, progname, line_ptrcp);
 	}
 	return (1);
 }

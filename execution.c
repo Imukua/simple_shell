@@ -20,9 +20,10 @@ void print_prompt(char *prompt)
  * execmd - executes a command
  * @argv: array of pointers to the arguments
  * @progname: the program name
+ * @line_ptrcp: pointer to the line
  * Return: return value of the last executed command
 */
-void execmd(char **argv, char **progname,char *line_ptrcp)
+void execmd(char **argv, char **progname, char *line_ptrcp)
 {
 	int status, times;
 	char *argvL[2], *execution = NULL;
