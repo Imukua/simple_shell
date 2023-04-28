@@ -103,6 +103,7 @@ int run_n_return(char *line_ptrcp, char **progname)
 	}
 	if (_strcmp(argv[0], "exit") == 0)
 	{
+		argv[TMAX] = progname[0];
 		exit_bltn(argv, line_ptrcp);
 		return (1);
 	}

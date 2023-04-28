@@ -40,9 +40,10 @@ char *myrealloc(char *ptr, size_t size)
 /**
  * str_to_int - converts an integer to a string
  * @str: integer to convert
+ * @progname: name of the program
  * Return: pointer to the string
  */
-int str_to_int(const char *str)
+int str_to_int(const char *str, char *progname)
 {
 	int result = 0;
 	int sign = 1;
@@ -75,8 +76,11 @@ int str_to_int(const char *str)
 
 	if (i != (int)_strlen(str, TMAX) || len == 0)
 	{
-		_putstr(": exit: ");
-		_putstr(": numeric argument required\n");
+		_putstr(progname);
+		_putstr(": 1: exit: Illegal number: ");
+		_putstr((char *)str);
+		_putstr("\n");
+
 
 	return (0);
 	}

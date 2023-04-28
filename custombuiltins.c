@@ -73,7 +73,7 @@ int exit_bltn(char **args, char *line_ptrcp)
 		free(line_ptrcp);
 		exit(0);
 	}
-	status = str_to_int((const char *)args[1]);
+	status = str_to_int((const char *)args[1], args[TMAX]);
 	if (status == 0)
 	{
 		return (1);
