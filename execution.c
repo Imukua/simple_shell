@@ -77,12 +77,15 @@ void execmd(char **argv, char **progname, char *line_ptrcp)
 int tokenize_input(char *input_str, char **tokens,
 const char *delim, int max_tokens)
 {
-	char *token;
-	int token_count = 0;
+	char *token, *comment_ptr = NULL;
+	int token_count = 0,meets;
 
-	char *comment_ptr = NULL;
-
+	meets = starts_with_echo_and_double_quote(input_str);
+	if (meets == 0)
+	{
 	comment_ptr = strchr(input_str, '#');
+	}
+
     if (comment_ptr != NULL) {
         *comment_ptr = '\0';
     }

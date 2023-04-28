@@ -62,7 +62,7 @@ int my_isdigit(char digit);
 int str_to_int(const char *str, char *progname);
 int my_strncmp(const char *s1, const char *s2, size_t no);
 int my_isspace(int ch);
-
+int starts_with_echo_and_double_quote(const char *str);
 /*functions from execution.c - for executing commands*/
 void print_prompt(char *prompt);
 void execmd(char **argv, char **progname, char *line_ptrcp);
