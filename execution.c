@@ -78,7 +78,7 @@ int tokenize_input(char *input_str, char **tokens,
 const char *delim, int max_tokens)
 {
 	char *token, *comment_ptr = NULL;
-	int token_count = 0,meets;
+	int token_count = 0, meets;
 
 	meets = starts_with_echo_and_double_quote(input_str);
 	if (meets == 0)
@@ -86,9 +86,10 @@ const char *delim, int max_tokens)
 	comment_ptr = strchr(input_str, '#');
 	}
 
-    if (comment_ptr != NULL) {
-        *comment_ptr = '\0';
-    }
+	if (comment_ptr != NULL)
+	{
+	*comment_ptr = '\0';
+	}
 
 
 	token = mystr_tok(input_str, delim);
@@ -107,7 +108,6 @@ const char *delim, int max_tokens)
 	{
 	token[--len] = '\0';
 	}
-
 	if (len > 0)
 	{
 	tokens[token_count] = token;
@@ -116,7 +116,6 @@ const char *delim, int max_tokens)
 	}
 	token = mystr_tok(NULL, delim);
 	}
-
 	return (token_count);
 }
 
