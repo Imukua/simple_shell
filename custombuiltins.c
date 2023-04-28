@@ -78,12 +78,6 @@ int exit_bltn(char **args, char *line_ptrcp)
 	{
 		return (1);
 	}
-
-	if (status > 255)
-	{
-		print_error(args[TMAX], args[0], 1);
-		return (1);
-	}
 	free(line_ptrcp);
 	exit(status);
 }
