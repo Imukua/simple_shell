@@ -80,6 +80,14 @@ const char *delim, int max_tokens)
 	char *token;
 	int token_count = 0;
 
+	char *comment_ptr = NULL;
+
+	comment_ptr = strchr(input_str, '#');
+    if (comment_ptr != NULL) {
+        *comment_ptr = '\0';
+    }
+
+
 	token = mystr_tok(input_str, delim);
 	while (token != NULL && token_count < max_tokens)
 	{
