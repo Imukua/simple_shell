@@ -29,7 +29,7 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 	if (*lineptr == NULL)
 	{
 	*n = INITIAL_BUFFER_SIZE;
-	*lineptr = (char *) malloc(*n);
+	*lineptr = (char *) malloc(*n + 1);
 	if (*lineptr == NULL)
 	{
 	return (-1);

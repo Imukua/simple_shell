@@ -2,8 +2,8 @@
 #define HEADERS_H
 #define TMAX 1024
 #define INT_MAX 2147483647
-#define INITIAL_BUFFER_SIZE 128
-#define BUFFER_SIZE BUFSIZ
+#define INITIAL_BUFFER_SIZE 1024
+#define BUFFER_SIZE 1024
 #define MAX_ENV_VAR_LENGTH 1000
 extern char **environ;
 
