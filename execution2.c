@@ -53,7 +53,7 @@ char *line_stuff(void)
 	ssize_t line_value;
 	int len;
 
-	line_value = my_getline(&line_ptr, &line_size, stdin);
+	line_value = getline(&line_ptr, &line_size, stdin);
 	if (line_value == -2)
 	{
 		free(line_ptr);
